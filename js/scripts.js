@@ -32,29 +32,18 @@ $(document).ready(function(){
     var arrayOfStrings = [];
     function splitString(stringToSplit, separator) {
       arrayOfStrings = stringToSplit.split(separator);
-      // console.log('The original string is: "' + stringToSplit + '"');
-      // console.log('The separator is: "' + separator + '"');
-      // console.log('The array has ' + arrayOfStrings.length + ' elements: ' + arrayOfStrings.join(' / '));
       return arrayOfStrings;
     }
-
     var sentenceInput = $("#sentence").val();
-    var space = ' ';
+    // var space = ' ';
+    console.log(splitString(sentenceInput, " "));
 
-    console.log(splitString(sentenceInput, space));
-    
-    var newArray = arrayOfStrings.map(function(word){
-      console.log("derp test");
-      if (word.length >= 3){
-        return word;
-      }
-      // console.log(newArray);
+    var newArray = arrayOfStrings.filter(function(word){
+      return word.length >= 3;
     });
-
-
     console.log(arrayOfStrings);
-    console.log(newArray);
-
+    console.log(arrayOfStrings[1]);
+    console.log(newArray.reverse().join("-"));
     event.preventDefault();
   });
 });
