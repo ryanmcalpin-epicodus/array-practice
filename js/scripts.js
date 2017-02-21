@@ -1,13 +1,13 @@
 // ICE CREAM
-// // $(document).ready(function() {
-// //   var flavors = ["chocolate", "vanilla", "rocky road", "coconut", "cherry", "plain"];
-// //   flavors.forEach(function(flavor){
-// //     $("#unList").prepend("<li>" + flavor + "</li>");
-// //   });
-// // });
+// $(document).ready(function() {
+//   var flavors = ["chocolate", "vanilla", "rocky road", "coconut", "cherry", "plain"];
+//   flavors.forEach(function(flavor){
+//     $("#unList").prepend("<li>" + flavor + "</li>");
+//   });
+// });
 
 
- // GROCERY
+// GROCERY
 // $(document).ready(function(){
 //   $("#grossForm").submit(function(event){
 //     var groceryArray =[$('input#grocery1').val(), $('input#grocery2').val(), $('#grocery3').val(), $('#grocery4').val()]
@@ -26,7 +26,7 @@
 //   })
 // });
 
-// // SENTENCE ENTER CAVE OF MYSTERY
+// SENTENCE ENTER
 // $(document).ready(function(){
 //   $("#formy").submit(function(event){
 //     var arrayOfStrings = [];
@@ -48,20 +48,57 @@
 //   });
 // });
 
-// Use a forEach() loop within another forEach() loop to build an array representing a deck of cards. A deck consists of 52 cards - 13 ranks in each of 4 suits.
-// Then, display a list of every card in the deck. (Hint: Each element of the array should read something like "ace of spades" or "4 of hearts").
+// DECK OF CARDS
+// $(document).ready(function(){
+//   var ranks = ["ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king"];
+//   var suits = ["diamonds", "clubs", "spades", "hearts",]
+//
+//   suits.forEach(function(suit){
+//     ranks.forEach(function(rank) {
+//       $("ul").append("<li>" + rank + " of " + suit + "</li>");
+//     });
+//   });
+// });
 
+// New Word Order - AKA Bilderword group
 $(document).ready(function(){
-  var ranks = ["ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king"];
-  var suits = ["diamonds", "clubs", "spades", "hearts",]
+  $("form").submit(function(event){
 
-  suits.forEach(function(suit){
-    ranks.forEach(function(rank) {
-      $("ul").append("<li>" + rank + " of " + suit + "</li>");
-    });
-    // $("ul").append("<li>" + rank + "</li>");
-    // ranks.forEach(function(suits){
-    //   $("ul").append(suits);
-    // });
+    // var arr = [2, 2, 2, 2, 2, 4, 5, 5, 5, 9];
+    // var arr = ["test1", "test1", "test2", "test2", "test2", "test3"];
+    var arrayOfStrings = $("#textInput").val().split(" ");
+
+    function foo(arr) {
+      var a = [], b = [], prev;
+
+      arr.sort();
+      for ( var i = 0; i < arr.length; i++ ) {
+        if ( arr[i] !== prev ) {
+          a.push(arr[i]);
+          b.push(1);
+        } else {
+          b[b.length-1]++;
+        }
+        prev = arr[i];
+      }
+
+      return [a, b];
+    }
+    var result = foo(arrayOfStrings);
+
+    var names = result[0];
+    var numbers = result[1];
+
+    // document.write('[' + result[0] + ']<br>[' + result[1] + ']');
+    // document.write(result[0]);
+    var i = 0;
+    names.forEach(function(word){
+
+      $("ul").append("<li>" + word + " " + numbers[i] + "</li>");
+      i++;
+    })
+
+    console.log(names);
+    event.preventDefault();
   });
 });
